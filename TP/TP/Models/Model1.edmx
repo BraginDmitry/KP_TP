@@ -1,0 +1,206 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище tpModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Dogovor">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IDKl" Type="int" Nullable="false" />
+          <Property Name="IDAg" Type="int" Nullable="false" />
+          <Property Name="IDTr" Type="int" Nullable="false" />
+          <Property Name="Date" Type="int" Nullable="false" />
+          <Property Name="IDGroup" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GroupDog">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Description" Type="text" />
+        </EntityType>
+        <EntityType Name="StrSl">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="IDKl" Type="int" Nullable="false" />
+          <Property Name="IDDogv" Type="int" Nullable="false" />
+          <Property Name="Date" Type="date" Nullable="false" />
+          <Property Name="Described" Type="text" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tarif">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Price" Type="float" Nullable="false" />
+          <Property Name="Object" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Conditions" Type="text" Nullable="false" />
+        </EntityType>
+        <Association Name="IDGroup">
+          <End Role="GroupDog" Type="Self.GroupDog" Multiplicity="1" />
+          <End Role="Dogovor" Type="Self.Dogovor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GroupDog">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Dogovor">
+              <PropertyRef Name="IDGroup" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище tpModelContainer">
+          <EntitySet Name="Dogovor" EntityType="Self.Dogovor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GroupDog" EntityType="Self.GroupDog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StrSl" EntityType="Self.StrSl" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tarif" EntityType="Self.Tarif" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="IDGroup" Association="Self.IDGroup">
+            <End Role="GroupDog" EntitySet="GroupDog" />
+            <End Role="Dogovor" EntitySet="Dogovor" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="tpModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Dogovor">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IDKl" Type="Int32" Nullable="false" />
+          <Property Name="IDAg" Type="Int32" Nullable="false" />
+          <Property Name="IDTr" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="Int32" Nullable="false" />
+          <Property Name="IDGroup" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="GroupDog" Relationship="Self.IDGroup" FromRole="Dogovor" ToRole="GroupDog" />
+        </EntityType>
+        <EntityType Name="GroupDog">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Dogovor" Relationship="Self.IDGroup" FromRole="GroupDog" ToRole="Dogovor" />
+        </EntityType>
+        <EntityType Name="StrSl">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="IDKl" Type="Int32" Nullable="false" />
+          <Property Name="IDDogv" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Described" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tarif">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Price" Type="Double" Nullable="false" />
+          <Property Name="Object" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Conditions" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <Association Name="IDGroup">
+          <End Role="GroupDog" Type="Self.GroupDog" Multiplicity="1" />
+          <End Role="Dogovor" Type="Self.Dogovor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GroupDog">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Dogovor">
+              <PropertyRef Name="IDGroup" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="tpEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Dogovor" EntityType="Self.Dogovor" />
+          <EntitySet Name="GroupDog" EntityType="Self.GroupDog" />
+          <EntitySet Name="StrSl" EntityType="Self.StrSl" />
+          <EntitySet Name="Tarif" EntityType="Self.Tarif" />
+          <AssociationSet Name="IDGroup" Association="Self.IDGroup">
+            <End Role="GroupDog" EntitySet="GroupDog" />
+            <End Role="Dogovor" EntitySet="Dogovor" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище tpModelContainer" CdmEntityContainer="tpEntities1">
+          <EntitySetMapping Name="Dogovor">
+            <EntityTypeMapping TypeName="tpModel.Dogovor">
+              <MappingFragment StoreEntitySet="Dogovor">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IDKl" ColumnName="IDKl" />
+                <ScalarProperty Name="IDAg" ColumnName="IDAg" />
+                <ScalarProperty Name="IDTr" ColumnName="IDTr" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="IDGroup" ColumnName="IDGroup" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GroupDog">
+            <EntityTypeMapping TypeName="tpModel.GroupDog">
+              <MappingFragment StoreEntitySet="GroupDog">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StrSl">
+            <EntityTypeMapping TypeName="tpModel.StrSl">
+              <MappingFragment StoreEntitySet="StrSl">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IDKl" ColumnName="IDKl" />
+                <ScalarProperty Name="IDDogv" ColumnName="IDDogv" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Described" ColumnName="Described" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tarif">
+            <EntityTypeMapping TypeName="tpModel.Tarif">
+              <MappingFragment StoreEntitySet="Tarif">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Object" ColumnName="Object" />
+                <ScalarProperty Name="Conditions" ColumnName="Conditions" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

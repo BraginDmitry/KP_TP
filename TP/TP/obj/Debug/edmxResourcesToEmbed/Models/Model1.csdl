@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="tpModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Dogovor">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IDKl" Type="Int32" Nullable="false" />
+    <Property Name="IDAg" Type="Int32" Nullable="false" />
+    <Property Name="IDTr" Type="Int32" Nullable="false" />
+    <Property Name="Date" Type="Int32" Nullable="false" />
+    <Property Name="IDGroup" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="GroupDog" Relationship="Self.IDGroup" FromRole="Dogovor" ToRole="GroupDog" />
+  </EntityType>
+  <EntityType Name="GroupDog">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Dogovor" Relationship="Self.IDGroup" FromRole="GroupDog" ToRole="Dogovor" />
+  </EntityType>
+  <EntityType Name="StrSl">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="IDKl" Type="Int32" Nullable="false" />
+    <Property Name="IDDogv" Type="Int32" Nullable="false" />
+    <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Described" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Tarif">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Price" Type="Double" Nullable="false" />
+    <Property Name="Object" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Conditions" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <Association Name="IDGroup">
+    <End Role="GroupDog" Type="Self.GroupDog" Multiplicity="1" />
+    <End Role="Dogovor" Type="Self.Dogovor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GroupDog">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Dogovor">
+        <PropertyRef Name="IDGroup" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="tpEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Dogovor" EntityType="Self.Dogovor" />
+    <EntitySet Name="GroupDog" EntityType="Self.GroupDog" />
+    <EntitySet Name="StrSl" EntityType="Self.StrSl" />
+    <EntitySet Name="Tarif" EntityType="Self.Tarif" />
+    <AssociationSet Name="IDGroup" Association="Self.IDGroup">
+      <End Role="GroupDog" EntitySet="GroupDog" />
+      <End Role="Dogovor" EntitySet="Dogovor" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище tpModelContainer" CdmEntityContainer="tpEntities1">
+    <EntitySetMapping Name="Dogovor">
+      <EntityTypeMapping TypeName="tpModel.Dogovor">
+        <MappingFragment StoreEntitySet="Dogovor">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="IDKl" ColumnName="IDKl" />
+          <ScalarProperty Name="IDAg" ColumnName="IDAg" />
+          <ScalarProperty Name="IDTr" ColumnName="IDTr" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="IDGroup" ColumnName="IDGroup" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GroupDog">
+      <EntityTypeMapping TypeName="tpModel.GroupDog">
+        <MappingFragment StoreEntitySet="GroupDog">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="StrSl">
+      <EntityTypeMapping TypeName="tpModel.StrSl">
+        <MappingFragment StoreEntitySet="StrSl">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="IDKl" ColumnName="IDKl" />
+          <ScalarProperty Name="IDDogv" ColumnName="IDDogv" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Described" ColumnName="Described" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tarif">
+      <EntityTypeMapping TypeName="tpModel.Tarif">
+        <MappingFragment StoreEntitySet="Tarif">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Object" ColumnName="Object" />
+          <ScalarProperty Name="Conditions" ColumnName="Conditions" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
