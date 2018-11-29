@@ -1,0 +1,55 @@
+﻿@model IEnumerable<Agentstvo.Models.StrSl>
+
+@{
+    ViewBag.Title = "Главная";
+}
+@Html.ActionLink("Переключись", "Index")
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IDKl)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IDDogv)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Described)
+        </th>
+        <th> Action</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IDKl)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IDDogv)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Described)
+            </td>
+            <td>
+                @Html.ActionLink("Dogovor", "IndexDog", new { id = item.Id }) |
+                @Html.ActionLink("Детали", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Удалить", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
+</table>
+
+

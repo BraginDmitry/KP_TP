@@ -1,0 +1,68 @@
+﻿@model IEnumerable<Agentstvo.Models.Dogovor>
+@{
+    ViewBag.Title = "Главная";
+}
+
+<ul id="groups">
+    @foreach (var item in (IEnumerable<Agentstvo.Models.GroupDog>)ViewData["Groups"])
+    {
+        <li>
+            <div>
+                @Html.ActionLink(item.Name, "IndexDog", new { id = item.Id })
+            </div>
+        </li>
+    }
+</ul>
+<p>
+    @Html.ActionLink("Переключись", "IndexStr")
+    <br>
+    @Html.ActionLink("Добавить", "CreateDogov")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.IDGroup)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IDKl)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IDAg)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IDTr)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Date)
+        </th>
+
+        <th> Action</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.GroupDog.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IDKl)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IDAg)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IDTr)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+
+                @Html.ActionLink("Редактировать", "EditDogov", new { id = item.Id }) |
+                @Html.ActionLink("Просмотреть", "DetailsDogov", new { id = item.Id }) |
+                @Html.ActionLink("Удалить", "DeleteDogov", new { id = item.Id })
+            </td>
+        </tr>
+    }
+</table>
