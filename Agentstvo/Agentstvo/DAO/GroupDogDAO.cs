@@ -1,4 +1,4 @@
-﻿using Agentstvo.Models;
+﻿using Agentstvo.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;

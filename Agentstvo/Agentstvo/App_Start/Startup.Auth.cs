@@ -5,7 +5,7 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
-using Agentstvo.Models;
+using Agentstvo.Model;
 
 namespace Agentstvo
 {

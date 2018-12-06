@@ -1,4 +1,4 @@
-﻿using Agentstvo.Models;
+﻿using Agentstvo.Model;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -7,88 +7,77 @@ using System.Web;
 
 namespace Agentstvo.DAO
 {
-    public class StrSluDAO : DAO
+    public class StrSlDAO : DAO
     {
-        public List<StrSl> GetAllStrSl()
+        private Entities _entities = new Entities();
+        public IEnumerable<StrSl> GetAllStrSl()
         {
-            Connect();
-            List<StrSl> recordList = new List<StrSl>();
+            return (from c in _entities.StrSl.Include("GroupStr") select c);
+        }
+        public GroupStr GetGroupStr(int? id)
+        {
+            if (id != null) //возращает запись по её Id
+                return (from c in _entities.GroupStr
+                        where c.Id == id
+                        select c).FirstOrDefault();
+            else // возращает первую запись в таблице
+                return (from c in _entities.GroupStr
+                        select c).FirstOrDefault();
+        }
+        public StrSl getStrSl(int id)
+        {
+            return (from c in _entities.StrSl.Include("GroupStr")
+                    where c.Id == id
+                    select c).FirstOrDefault();
+        }
+        public bool addSrtSl(int GroupId, StrSl Str)
+        {
             try
             {
-                SqlCommand command = new SqlCommand("SELECT * FROM StrSl", Connection);
-                SqlDataReader reader = command.ExecuteReader();
-                while (reader.Read())
-                {
-                    StrSl record = new StrSl();
-                    record.Id = Convert.ToInt32(reader["Id"]);
-                    record.IDKl = Convert.ToInt32(reader["IDKl"]);
-                    record.IDDogv = Convert.ToInt32(reader["IDDogv"]);
-                    record.Date = Convert.ToString(reader["Date"]);
-                    record.Described = Convert.ToString(reader["Described"]);
-                    recordList.Add(record);
-                }
-                reader.Close();
+                Str.GroupStr = GetGroupStr(GroupId);
+                _entities.StrSl.Add(Str);
+                _entities.SaveChanges();
             }
-            catch (Exception) { }
-            finally { Disconnect(); }
-            return recordList;
+            catch
+            {
+                return false;
+            }
+            return true;
         }
+        public bool updateStrSl(int GroupId, StrSl Str)
+        {
+            StrSl originalRecords = getStrSl(Str.Id);
+            originalRecords.GroupStr = GetGroupStr(GroupId);
+            try
+            {
+                originalRecords.IDKl = Str.IDKl;
+                originalRecords.IDDogv = Str.IDDogv;
+                originalRecords.Date = Str.Date;
+                originalRecords.Described = Str.Described;
+                originalRecords.IDGroup = Str.IDGroup;
+                //       originalRecords.IDGroup = Dogov.IDGroup;
 
-        /*        public bool AddRecord(Records record)
-                {
-                    bool result = true;
-                    Connect();
-                    try
-                    {
-                        SqlCommand cmd = new SqlCommand(
-                            "INSERT INTO  Biblo (FIO, Avtor, Book, Librarian, Date) " +
-                            "VALUES (@FIO, @Avtor, @Book, @Librarian, @Date)", Connection
-                            );
-                        cmd.Parameters.AddWithValue("@FIO", record.FIO);
-                        cmd.Parameters.AddWithValue("@Avtor", record.Avtor);
-                        cmd.Parameters.AddWithValue("@Book", record.Book);
-                        cmd.Parameters.AddWithValue("@Librarian", record.Librarian);
-                        cmd.Parameters.AddWithValue("@Date", record.Date);
-
-                        cmd.ExecuteNonQuery();
-                    }
-                    catch (Exception) { result = false; }
-                    finally { Disconnect(); }
-                    return result;
-                }
-                public void EditRecord(Records record)
-                {
-                    try
-                    {
-                        Connect();
-                        string str = "UPDATE Biblo SET FIO = '" + record.FIO
-                            + "', Avtor = '" + record.Avtor
-                            + "', Book = '" + record.Book
-                            + "', Librarian = '" + record.Librarian
-                            + "', Date = '" + record.Date
-                            + "'WHERE Id = " + record.Id;
-                        SqlCommand com = new SqlCommand(str, Connection);
-                        com.ExecuteNonQuery();
-                    }
-                    finally
-                    {
-                        Disconnect();
-                    }
-                }
-                public void DeleteRecord(int id)
-                {
-                    try
-                    {
-                        Connect();
-                        string str = "DELETE FROM Biblo WHERE Id=" + id;
-                        SqlCommand com = new SqlCommand(str, Connection);
-                        com.ExecuteNonQuery();
-                    }
-                    finally
-                    {
-                        Disconnect();
-                    }
-                }
-                */
+                _entities.SaveChanges();
+            }
+            catch
+            {
+                return false;
+            }
+            return true;
+        }
+        public bool deleteStrSl(int Id)
+        {
+            StrSl originalStrSl = getStrSl(Id);
+            try
+            {
+                _entities.StrSl.Remove(originalStrSl);
+                _entities.SaveChanges();
+            }
+            catch
+            {
+                return false;
+            }
+            return true;
+        }
     }
 }
