@@ -91,6 +91,7 @@
         <MappingFragment StoreEntitySet="StrSl">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="IDKl" ColumnName="IDKl" />
+          <ScalarProperty Name="IDAg" ColumnName="IDAg" />
           <ScalarProperty Name="IDDogv" ColumnName="IDDogv" />
           <ScalarProperty Name="Date" ColumnName="Date" />
           <ScalarProperty Name="Described" ColumnName="Described" />

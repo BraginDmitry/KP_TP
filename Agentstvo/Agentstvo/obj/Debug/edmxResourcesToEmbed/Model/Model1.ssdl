@@ -66,8 +66,8 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="IDKl" Type="int" Nullable="false" />
-    <Property Name="IDAg" Type="int" Nullable="false" />
+    <Property Name="IDKl" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="IDAg" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="IDTr" Type="int" Nullable="false" />
     <Property Name="Date" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="IDGroup" Type="int" Nullable="false" />
@@ -93,7 +93,8 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="IDKl" Type="int" Nullable="false" />
+    <Property Name="IDKl" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="IDAg" Type="nvarchar" MaxLength="50" />
     <Property Name="IDDogv" Type="int" Nullable="false" />
     <Property Name="Date" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="Described" Type="text" Nullable="false" />
@@ -120,7 +121,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__StrSl__IDDogv__3E52440B">
+  <Association Name="FK__StrSl__IDDogv__6FE99F9F">
     <End Role="Dogovor" Type="Self.Dogovor" Multiplicity="1" />
     <End Role="StrSl" Type="Self.StrSl" Multiplicity="*" />
     <ReferentialConstraint>
@@ -132,7 +133,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__StrSl__IDGroup__5AEE82B9">
+  <Association Name="FK__StrSl__IDGroup__70DDC3D8">
     <End Role="GroupStr" Type="Self.GroupStr" Multiplicity="1" />
     <End Role="StrSl" Type="Self.StrSl" Multiplicity="*" />
     <ReferentialConstraint>
@@ -228,11 +229,11 @@
       <End Role="Tarif" EntitySet="Tarif" />
       <End Role="Dogovor" EntitySet="Dogovor" />
     </AssociationSet>
-    <AssociationSet Name="FK__StrSl__IDDogv__3E52440B" Association="Self.FK__StrSl__IDDogv__3E52440B">
+    <AssociationSet Name="FK__StrSl__IDDogv__6FE99F9F" Association="Self.FK__StrSl__IDDogv__6FE99F9F">
       <End Role="Dogovor" EntitySet="Dogovor" />
       <End Role="StrSl" EntitySet="StrSl" />
     </AssociationSet>
-    <AssociationSet Name="FK__StrSl__IDGroup__5AEE82B9" Association="Self.FK__StrSl__IDGroup__5AEE82B9">
+    <AssociationSet Name="FK__StrSl__IDGroup__70DDC3D8" Association="Self.FK__StrSl__IDGroup__70DDC3D8">
       <End Role="GroupStr" EntitySet="GroupStr" />
       <End Role="StrSl" EntitySet="StrSl" />
     </AssociationSet>

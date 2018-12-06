@@ -64,13 +64,13 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="IDKl" Type="Int32" Nullable="false" />
-    <Property Name="IDAg" Type="Int32" Nullable="false" />
+    <Property Name="IDKl" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="IDAg" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="IDTr" Type="Int32" Nullable="false" />
     <Property Name="Date" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="IDGroup" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Tarif" Relationship="Self.FK__Dogovor__IDTr__3D5E1FD2" FromRole="Dogovor" ToRole="Tarif" />
-    <NavigationProperty Name="StrSl" Relationship="Self.FK__StrSl__IDDogv__3E52440B" FromRole="Dogovor" ToRole="StrSl" />
+    <NavigationProperty Name="StrSl" Relationship="Self.FK__StrSl__IDDogv__6FE99F9F" FromRole="Dogovor" ToRole="StrSl" />
     <NavigationProperty Name="GroupDog" Relationship="Self.IDGroup" FromRole="Dogovor" ToRole="GroupDog" />
   </EntityType>
   <EntityType Name="GroupDog">
@@ -89,20 +89,21 @@
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="StrSl" Relationship="Self.FK__StrSl__IDGroup__5AEE82B9" FromRole="GroupStr" ToRole="StrSl" />
+    <NavigationProperty Name="StrSl" Relationship="Self.FK__StrSl__IDGroup__70DDC3D8" FromRole="GroupStr" ToRole="StrSl" />
   </EntityType>
   <EntityType Name="StrSl">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="IDKl" Type="Int32" Nullable="false" />
+    <Property Name="IDKl" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="IDAg" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="IDDogv" Type="Int32" Nullable="false" />
     <Property Name="Date" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Described" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="IDGroup" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="Dogovor" Relationship="Self.FK__StrSl__IDDogv__3E52440B" FromRole="StrSl" ToRole="Dogovor" />
-    <NavigationProperty Name="GroupStr" Relationship="Self.FK__StrSl__IDGroup__5AEE82B9" FromRole="StrSl" ToRole="GroupStr" />
+    <NavigationProperty Name="Dogovor" Relationship="Self.FK__StrSl__IDDogv__6FE99F9F" FromRole="StrSl" ToRole="Dogovor" />
+    <NavigationProperty Name="GroupStr" Relationship="Self.FK__StrSl__IDGroup__70DDC3D8" FromRole="StrSl" ToRole="GroupStr" />
   </EntityType>
   <EntityType Name="Tarif">
     <Key>
@@ -154,7 +155,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__StrSl__IDDogv__3E52440B">
+  <Association Name="FK__StrSl__IDDogv__6FE99F9F">
     <End Role="Dogovor" Type="Self.Dogovor" Multiplicity="1" />
     <End Role="StrSl" Type="Self.StrSl" Multiplicity="*" />
     <ReferentialConstraint>
@@ -178,7 +179,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__StrSl__IDGroup__5AEE82B9">
+  <Association Name="FK__StrSl__IDGroup__70DDC3D8">
     <End Role="GroupStr" Type="Self.GroupStr" Multiplicity="1" />
     <End Role="StrSl" Type="Self.StrSl" Multiplicity="*" />
     <ReferentialConstraint>
@@ -217,7 +218,7 @@
       <End Role="Tarif" EntitySet="Tarif" />
       <End Role="Dogovor" EntitySet="Dogovor" />
     </AssociationSet>
-    <AssociationSet Name="FK__StrSl__IDDogv__3E52440B" Association="Self.FK__StrSl__IDDogv__3E52440B">
+    <AssociationSet Name="FK__StrSl__IDDogv__6FE99F9F" Association="Self.FK__StrSl__IDDogv__6FE99F9F">
       <End Role="Dogovor" EntitySet="Dogovor" />
       <End Role="StrSl" EntitySet="StrSl" />
     </AssociationSet>
@@ -225,7 +226,7 @@
       <End Role="GroupDog" EntitySet="GroupDog" />
       <End Role="Dogovor" EntitySet="Dogovor" />
     </AssociationSet>
-    <AssociationSet Name="FK__StrSl__IDGroup__5AEE82B9" Association="Self.FK__StrSl__IDGroup__5AEE82B9">
+    <AssociationSet Name="FK__StrSl__IDGroup__70DDC3D8" Association="Self.FK__StrSl__IDGroup__70DDC3D8">
       <End Role="GroupStr" EntitySet="GroupStr" />
       <End Role="StrSl" EntitySet="StrSl" />
     </AssociationSet>

@@ -70,7 +70,7 @@ namespace Agentstvo.Controllers
             try
             {
                 if (strslDAO.addSrtSl(GroupId, Str))
-                    return RedirectToAction("Create");
+                    return RedirectToAction("Index");
                 else
                     return View(Str);
             }
