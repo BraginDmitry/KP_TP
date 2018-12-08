@@ -29,6 +29,11 @@ namespace TP.Controllers
                }
                */
 
+        public ActionResult Start()
+        {
+            return View("Start");
+        }
+
         public ActionResult Index(int? id)
         {
             ViewData["Groups"] = groupDAO.GetAllGroups();

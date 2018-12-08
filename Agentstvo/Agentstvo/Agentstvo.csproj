@@ -201,11 +201,13 @@
     <Compile Include="Controllers\DogovorController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\StrController.cs" />
+    <Compile Include="Controllers\TarifController.cs" />
     <Compile Include="DAO\DAO.cs" />
     <Compile Include="DAO\DogovorDAO.cs" />
     <Compile Include="DAO\GroupDogDAO.cs" />
     <Compile Include="DAO\GroupStrDAO.cs" />
     <Compile Include="DAO\StrSlDAO.cs" />
+    <Compile Include="DAO\TarifDAO.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -345,6 +347,8 @@
     <Content Include="Views\Dogovor\Delete.cshtml" />
     <Content Include="Views\Str\Index.cshtml" />
     <Content Include="Views\Str\Create.cshtml" />
+    <Content Include="Views\Tarif\Index.cshtml" />
+    <Content Include="Views\Dogovor\Start.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

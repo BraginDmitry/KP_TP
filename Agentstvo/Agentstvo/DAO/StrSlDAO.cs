@@ -32,7 +32,7 @@ namespace Agentstvo.DAO
         }
         public bool addSrtSl(int GroupId, StrSl Str)
         {
-            try
+            try  
             {
                 Str.GroupStr = GetGroupStr(GroupId);
                 _entities.StrSl.Add(Str);
